@@ -34,32 +34,31 @@
 
     body {
       font-family: 'Nunito', sans-serif;
-      background: linear-gradient(180deg, var(--night) 0%, var(--night-mid) 50%, #0c1222 100%);
+      background: linear-gradient(180deg, #0f1729 0%, #0c1222 100%);
       color: var(--ink);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* Snowy night: stars + soft snow glow at bottom */
-    body::before {
-      content: '';
+    /* Live falling snow */
+    .snow-wrap {
       position: fixed;
       inset: 0;
-      background-image:
-        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.9), transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.7), transparent),
-        radial-gradient(1.5px 1.5px at 90px 40px, rgba(255,255,255,0.8), transparent),
-        radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.6), transparent),
-        radial-gradient(1.5px 1.5px at 160px 120px, rgba(255,255,255,0.7), transparent),
-        radial-gradient(2px 2px at 250px 50px, rgba(255,255,255,0.5), transparent),
-        radial-gradient(1.5px 1.5px at 300px 100px, rgba(255,255,255,0.6), transparent),
-        radial-gradient(2px 2px at 50px 150px, rgba(255,255,255,0.5), transparent),
-        radial-gradient(1.5px 1.5px at 200px 180px, rgba(255,255,255,0.4), transparent),
-        radial-gradient(ellipse 120% 80% at 50% 100%, rgba(255,255,255,0.06) 0%, transparent 50%);
-      background-size: 320px 200px;
-      background-repeat: repeat;
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .snowflake {
+      position: absolute;
+      top: -8px;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 50%;
+      animation: snow-fall linear infinite;
+    }
+    @keyframes snow-fall {
+      to { transform: translateY(100vh) rotate(360deg); }
     }
 
     .page {
@@ -420,6 +419,7 @@
   </style>
 </head>
 <body>
+  <div class="snow-wrap" id="snowWrap" aria-hidden="true"></div>
   <main>
     <section class="page" id="intro">
       <div class="hero">
@@ -510,6 +510,22 @@
   </main>
 
   <script>
+    (function snow() {
+      const wrap = document.getElementById('snowWrap');
+      const count = 55;
+      for (let i = 0; i < count; i++) {
+        const flake = document.createElement('div');
+        flake.className = 'snowflake';
+        flake.style.left = Math.random() * 100 + 'vw';
+        flake.style.animationDuration = (4 + Math.random() * 6) + 's';
+        flake.style.animationDelay = Math.random() * 5 + 's';
+        flake.style.opacity = 0.5 + Math.random() * 0.5;
+        const size = 2 + Math.random() * 3;
+        flake.style.width = flake.style.height = size + 'px';
+        wrap.appendChild(flake);
+      }
+    })();
+
     const btnYes = document.getElementById('btnYes');
     const btnNo = document.getElementById('btnNo');
     const askPage = document.getElementById('ask');
