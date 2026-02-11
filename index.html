@@ -9,15 +9,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ice: #e8f4f8;
-      --ice-deep: #b8dce8;
-      --snow: #fafcfe;
+      --night: #0f1729;
+      --night-mid: #1e293b;
+      --night-soft: #334155;
+      --snow: #f0f4f8;
+      --snow-soft: #e2e8f0;
       --penguin-dark: #2d2d2d;
       --penguin-belly: #f5f5f0;
       --beak: #f4a261;
       --blush: #ffb5b5;
-      --ink: #3d5a6c;
-      --ink-soft: #6b8a9a;
+      --ink: #f0f4f8;
+      --ink-soft: #cbd5e1;
     }
 
     * {
@@ -32,20 +34,30 @@
 
     body {
       font-family: 'Nunito', sans-serif;
-      background: var(--ice);
+      background: linear-gradient(180deg, var(--night) 0%, var(--night-mid) 50%, #0c1222 100%);
       color: var(--ink);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* Soft snow-dot background */
+    /* Snowy night: stars + soft snow glow at bottom */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.6) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(184,220,232,0.4) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.3) 0%, transparent 70%);
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1.5px 1.5px at 90px 40px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1.5px 1.5px at 160px 120px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(2px 2px at 250px 50px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1.5px 1.5px at 300px 100px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 50px 150px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1.5px 1.5px at 200px 180px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(ellipse 120% 80% at 50% 100%, rgba(255,255,255,0.06) 0%, transparent 50%);
+      background-size: 320px 200px;
+      background-repeat: repeat;
       pointer-events: none;
       z-index: 0;
     }
@@ -222,8 +234,8 @@
       aspect-ratio: 1;
       border-radius: 1rem;
       overflow: hidden;
-      background: var(--ice-deep);
-      box-shadow: 0 8px 24px rgba(45, 90, 108, 0.12);
+      background: var(--night-mid);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
     .photo-wrap.featured {
@@ -243,7 +255,7 @@
       display: none;
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, var(--ice-deep) 0%, var(--snow) 100%);
+      background: linear-gradient(135deg, var(--night-mid) 0%, var(--night-soft) 100%);
       align-items: center;
       justify-content: center;
       color: var(--ink-soft);
@@ -326,9 +338,9 @@
     }
 
     .btn-no {
-      background: var(--snow);
+      background: transparent;
       color: var(--ink-soft);
-      border: 2px solid var(--ice-deep);
+      border: 2px solid var(--night-soft);
     }
 
     .btn-no:hover {
@@ -421,7 +433,7 @@
           <div class="penguin-blush left"></div>
           <div class="penguin-blush right"></div>
         </div>
-        <p class="greeting">Hey you</p>
+        <p class="greeting">Helloooo Pinguuuuu</p>
         <h1 class="name">There's something I wanted to ask you</h1>
         <p class="line">Scroll when you're ready — take your time.</p>
         <p class="scroll-hint">↓</p>
@@ -450,8 +462,7 @@
 
     <section class="page" id="letter">
       <div class="letter">
-        <p>Every day with you feels a little more like coming home.</p>
-        <p class="italic">So this year, I wanted to ask properly.</p>
+        <p>So many more memories to make, and years to spend with my baby.</p>
       </div>
     </section>
 
@@ -492,8 +503,8 @@
       <div class="confetti" id="confetti"></div>
       <div class="response show">
         <div class="hearts">🐧 ♥ 🐧</div>
-        <h2>I'm so glad.</h2>
-        <p>Can't wait to celebrate with you. You mean the world to me.</p>
+        <h2>Purr purrr purrrrrr 🥰🥰🥰🥰🥰</h2>
+        <p>I love you so much, my everything you areeee ❤️❤️❤️🧿🧿🧿</p>
       </div>
     </section>
   </main>
@@ -505,7 +516,7 @@
     const yesPage = document.getElementById('yes-response');
     const confettiEl = document.getElementById('confetti');
 
-    const colors = ['#f4a261', '#e07a5f', '#b8dce8', '#2d2d2d', '#ffb5b5'];
+    const colors = ['#f4a261', '#e07a5f', '#f0f4f8', '#e2e8f0', '#94a3b8', '#2d2d2d', '#ffb5b5'];
 
     function createConfetti() {
       for (let i = 0; i < 60; i++) {
