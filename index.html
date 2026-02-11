@@ -106,12 +106,12 @@
       background: #1a1a1a;
       border-radius: 50%;
       position: absolute;
-      top: 12px;
+      top: 6px;
       box-shadow: inset 0 -2px 0 2px #0a0a0a;
+      z-index: 5;
     }
-    .penguin-eye { z-index: 5; }
-    .penguin-eye.left { left: 10px; }
-    .penguin-eye.right { right: 10px; }
+    .penguin-eye.left { left: 12px; }
+    .penguin-eye.right { right: 12px; }
     .penguin-beak {
       width: 14px;
       height: 10px;
@@ -123,17 +123,18 @@
       transform: translateX(-50%);
       z-index: 10;
     }
+    /* Feet at bottom center */
     .penguin-blush {
-      width: 8px;
-      height: 5px;
+      width: 12px;
+      height: 6px;
       background: var(--blush);
       border-radius: 50%;
       position: absolute;
-      bottom: 8px;
-      opacity: 0.8;
+      bottom: 0;
+      opacity: 0.9;
     }
-    .penguin-blush.left { left: 2px; }
-    .penguin-blush.right { right: 2px; }
+    .penguin-blush.left { left: 50%; transform: translateX(-14px); }
+    .penguin-blush.right { left: 50%; transform: translateX(2px); }
 
     .penguin-small {
       transform: scale(0.6);
