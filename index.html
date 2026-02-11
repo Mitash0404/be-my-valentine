@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will you be my Valentine?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #faf8f5;
+      --rose: #8b4352;
+      --rose-deep: #6b2d3a;
+      --gold: #c9a962;
+      --gold-soft: #e8dcc8;
+      --ink: #2c2420;
+      --ink-soft: #5c524a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    /* Opening */
+    .hero {
+      text-align: center;
+      animation: fadeUp 1.2s ease-out;
+    }
+
+    .hero .greeting {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 400;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 10vw, 5rem);
+      font-weight: 600;
+      color: var(--rose-deep);
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+
+    .hero .line {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      max-width: 320px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .scroll-hint {
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* Letter section */
+    .letter {
+      max-width: 520px;
+      text-align: center;
+      animation: fadeUp 1s ease-out;
+    }
+
+    .letter p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .letter p.italic {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    /* The ask */
+    .ask {
+      text-align: center;
+      animation: fadeUp 1s ease-out;
+    }
+
+    .ask h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 600;
+      color: var(--rose-deep);
+      line-height: 1.2;
+      margin-bottom: 2rem;
+      max-width: 14ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, var(--rose) 0%, var(--rose-deep) 100%);
+      color: var(--cream);
+      box-shadow: 0 4px 20px rgba(107, 45, 58, 0.35);
+    }
+
+    .btn-yes:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 28px rgba(107, 45, 58, 0.45);
+    }
+
+    .btn-no {
+      background: transparent;
+      color: var(--ink-soft);
+      border: 2px solid var(--gold-soft);
+    }
+
+    .btn-no:hover {
+      transform: scale(0.95);
+      border-color: var(--gold);
+      color: var(--ink);
+    }
+
+    /* No button run away */
+    .btn-no.runaway {
+      position: fixed;
+      transition: left 0.3s ease, top 0.3s ease;
+    }
+
+    /* Yes response */
+    .response {
+      display: none;
+      text-align: center;
+      animation: fadeUp 0.8s ease-out;
+    }
+
+    .response.show {
+      display: block;
+    }
+
+    .response .hearts {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    .response h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 6vw, 3rem);
+      color: var(--rose-deep);
+      margin-bottom: 1rem;
+    }
+
+    .response p {
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      max-width: 360px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      animation: confetti-fall 3s ease-out forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Hide sections until active */
+    .page.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page" id="intro">
+      <div class="hero">
+        <p class="greeting">Hey you</p>
+        <h1 class="name">There's something I wanted to ask you</h1>
+        <p class="line">Scroll when you're ready — and take your time.</p>
+        <p class="scroll-hint">↓</p>
+      </div>
+    </section>
+
+    <section class="page" id="letter">
+      <div class="letter">
+        <p>Every day with you feels a little more like coming home.</p>
+        <p class="italic">So this year, I didn't want to just hope — I wanted to ask properly.</p>
+      </div>
+    </section>
+
+    <section class="page" id="ask">
+      <div class="ask">
+        <h2>Will you be my Valentine?</h2>
+        <div class="buttons">
+          <button type="button" class="btn btn-yes" id="btnYes">Yes</button>
+          <button type="button" class="btn btn-no" id="btnNo">Maybe later?</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="page hidden" id="yes-response">
+      <div class="confetti" id="confetti"></div>
+      <div class="response show">
+        <div class="hearts">♥ ♥ ♥</div>
+        <h2>I'm so glad.</h2>
+        <p>Can't wait to celebrate with you. You mean the world to me.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const btnYes = document.getElementById('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    const askPage = document.getElementById('ask');
+    const yesPage = document.getElementById('yes-response');
+    const confettiEl = document.getElementById('confetti');
+
+    const colors = ['#8b4352', '#6b2d3a', '#c9a962', '#e8dcc8'];
+
+    function createConfetti() {
+      for (let i = 0; i < 60; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = Math.random() * 100 + 'vw';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = Math.random() * 0.5 + 's';
+        piece.style.animationDuration = (2 + Math.random() * 2) + 's';
+        confettiEl.appendChild(piece);
+        setTimeout(() => piece.remove(), 4000);
+      }
+    }
+
+    btnYes.addEventListener('click', () => {
+      askPage.classList.add('hidden');
+      yesPage.classList.remove('hidden');
+      yesPage.scrollIntoView({ behavior: 'smooth' });
+      createConfetti();
+    });
+
+    let noClicks = 0;
+    btnNo.addEventListener('click', () => {
+      noClicks++;
+      if (noClicks === 1) {
+        btnNo.textContent = 'Sure?';
+      } else if (noClicks === 2) {
+        btnNo.textContent = 'Pretty please?';
+      } else {
+        btnNo.textContent = "Okay fine — it's Yes";
+        btnNo.classList.remove('btn-no');
+        btnNo.classList.add('btn-yes');
+        btnNo.style.background = 'linear-gradient(135deg, #8b4352 0%, #6b2d3a 100%)';
+        btnNo.style.color = '#faf8f5';
+        btnNo.style.border = 'none';
+        btnNo.onclick = () => btnYes.click();
+      }
+    });
+  </script>
+</body>
+</html>
