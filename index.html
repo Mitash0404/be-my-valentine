@@ -230,7 +230,6 @@
 
     .photo-wrap {
       position: relative;
-      aspect-ratio: 1;
       border-radius: 1rem;
       overflow: hidden;
       background: var(--night-mid);
@@ -239,14 +238,11 @@
 
     .photo-wrap.featured {
       grid-column: 1 / -1;
-      aspect-ratio: 16/10;
-      max-height: 320px;
     }
 
     .photo-wrap img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
     }
 
@@ -455,6 +451,10 @@
           <div class="photo-wrap">
             <img src="images/us3.jpg" alt="Us" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <span class="placeholder">us3.jpg</span>
+          </div>
+          <div class="photo-wrap">
+            <img src="images/us4.jpg" alt="Us" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="placeholder">us4.jpg</span>
           </div>
         </div>
       </div>
