@@ -98,6 +98,7 @@
       bottom: 52px;
       left: 50%;
       transform: translateX(-50%);
+      z-index: 2;
     }
     .penguin-eye {
       width: 10px;
@@ -108,6 +109,7 @@
       top: 12px;
       box-shadow: inset 0 -2px 0 2px #0a0a0a;
     }
+    .penguin-eye { z-index: 5; }
     .penguin-eye.left { left: 10px; }
     .penguin-eye.right { right: 10px; }
     .penguin-beak {
@@ -116,9 +118,10 @@
       background: var(--beak);
       border-radius: 0 0 50% 50%;
       position: absolute;
-      top: 24px;
+      top: 20px;
       left: 50%;
       transform: translateX(-50%);
+      z-index: 10;
     }
     .penguin-blush {
       width: 8px;
