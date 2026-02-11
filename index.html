@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Will you be my Valentine?</title>
+  <title>Will you be my Valentine? 🐧</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --cream: #faf8f5;
-      --rose: #8b4352;
-      --rose-deep: #6b2d3a;
-      --gold: #c9a962;
-      --gold-soft: #e8dcc8;
-      --ink: #2c2420;
-      --ink-soft: #5c524a;
+      --ice: #e8f4f8;
+      --ice-deep: #b8dce8;
+      --snow: #fafcfe;
+      --penguin-dark: #2d2d2d;
+      --penguin-belly: #f5f5f0;
+      --beak: #f4a261;
+      --blush: #ffb5b5;
+      --ink: #3d5a6c;
+      --ink-soft: #6b8a9a;
     }
 
     * {
@@ -29,21 +31,23 @@
     }
 
     body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--cream);
+      font-family: 'Nunito', sans-serif;
+      background: var(--ice);
       color: var(--ink);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* Subtle grain overlay */
+    /* Soft snow-dot background */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.6) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(184,220,232,0.4) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.3) 0%, transparent 70%);
       pointer-events: none;
-      z-index: 1000;
+      z-index: 0;
     }
 
     .page {
@@ -54,59 +58,132 @@
       justify-content: center;
       padding: 2rem;
       position: relative;
+      z-index: 1;
     }
 
-    /* Opening */
+    /* Cute CSS penguin */
+    .penguin {
+      width: 64px;
+      height: 80px;
+      position: relative;
+      margin: 0 auto 1.5rem;
+      animation: wobble 3s ease-in-out infinite;
+    }
+    .penguin-body {
+      width: 56px;
+      height: 64px;
+      background: var(--penguin-dark);
+      border-radius: 50% 50% 45% 45%;
+      position: absolute;
+      bottom: 0;
+      left: 4px;
+      box-shadow: inset -6px 4px 0 rgba(255,255,255,0.08);
+    }
+    .penguin-belly {
+      width: 36px;
+      height: 38px;
+      background: var(--penguin-belly);
+      border-radius: 50%;
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .penguin-head {
+      width: 48px;
+      height: 40px;
+      background: var(--penguin-dark);
+      border-radius: 50%;
+      position: absolute;
+      bottom: 52px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .penguin-eye {
+      width: 10px;
+      height: 12px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      position: absolute;
+      top: 12px;
+      box-shadow: inset 0 -2px 0 2px #0a0a0a;
+    }
+    .penguin-eye.left { left: 10px; }
+    .penguin-eye.right { right: 10px; }
+    .penguin-beak {
+      width: 14px;
+      height: 10px;
+      background: var(--beak);
+      border-radius: 0 0 50% 50%;
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .penguin-blush {
+      width: 8px;
+      height: 5px;
+      background: var(--blush);
+      border-radius: 50%;
+      position: absolute;
+      bottom: 8px;
+      opacity: 0.8;
+    }
+    .penguin-blush.left { left: 2px; }
+    .penguin-blush.right { right: 2px; }
+
+    .penguin-small {
+      transform: scale(0.6);
+      margin: 0 0.5rem;
+    }
+
+    @keyframes wobble {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+
+    /* Hero */
     .hero {
       text-align: center;
       animation: fadeUp 1.2s ease-out;
     }
 
     .hero .greeting {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 400;
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+      font-weight: 600;
       color: var(--ink-soft);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
     }
 
     .hero .name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 10vw, 5rem);
-      font-weight: 600;
-      color: var(--rose-deep);
-      line-height: 1.1;
-      margin-bottom: 2rem;
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 1rem;
     }
 
     .hero .line {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      font-weight: 300;
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      font-weight: 400;
       color: var(--ink-soft);
       max-width: 320px;
-      margin: 0 auto 3rem;
+      margin: 0 auto 2rem;
       line-height: 1.7;
     }
 
     .scroll-hint {
-      font-size: 0.85rem;
-      color: var(--gold);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--beak);
       animation: pulse 2s ease-in-out infinite;
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes pulse {
@@ -114,7 +191,63 @@
       50% { opacity: 1; }
     }
 
-    /* Letter section */
+    /* Photos section */
+    .photos-section {
+      width: 100%;
+      max-width: 900px;
+      animation: fadeUp 1s ease-out;
+    }
+
+    .photos-section h2 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--ink);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .photos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .photo-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 1rem;
+      overflow: hidden;
+      background: var(--ice-deep);
+      box-shadow: 0 8px 24px rgba(45, 90, 108, 0.12);
+    }
+
+    .photo-wrap.featured {
+      grid-column: 1 / -1;
+      aspect-ratio: 16/10;
+      max-height: 320px;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-wrap .placeholder {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--ice-deep) 0%, var(--snow) 100%);
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      padding: 1rem;
+    }
+
+    /* Letter */
     .letter {
       max-width: 520px;
       text-align: center;
@@ -122,17 +255,16 @@
     }
 
     .letter p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
       font-weight: 400;
       line-height: 1.8;
       color: var(--ink);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .letter p.italic {
       font-style: italic;
-      color: var(--rose);
+      color: var(--ink-soft);
     }
 
     /* The ask */
@@ -141,14 +273,21 @@
       animation: fadeUp 1s ease-out;
     }
 
+    .ask .penguins {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
     .ask h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 8vw, 4rem);
-      font-weight: 600;
-      color: var(--rose-deep);
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(2rem, 7vw, 3.25rem);
+      font-weight: 700;
+      color: var(--ink);
       line-height: 1.2;
-      margin-bottom: 2rem;
-      max-width: 14ch;
+      margin-bottom: 1.5rem;
+      max-width: 12ch;
       margin-left: auto;
       margin-right: auto;
     }
@@ -161,10 +300,10 @@
     }
 
     .btn {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 1.1rem;
-      font-weight: 500;
-      padding: 1rem 2.5rem;
+      font-weight: 700;
+      padding: 1rem 2.25rem;
       border: none;
       border-radius: 999px;
       cursor: pointer;
@@ -172,32 +311,26 @@
     }
 
     .btn-yes {
-      background: linear-gradient(135deg, var(--rose) 0%, var(--rose-deep) 100%);
-      color: var(--cream);
-      box-shadow: 0 4px 20px rgba(107, 45, 58, 0.35);
+      background: linear-gradient(135deg, var(--beak) 0%, #e07a5f 100%);
+      color: var(--snow);
+      box-shadow: 0 6px 24px rgba(244, 162, 97, 0.4);
     }
 
     .btn-yes:hover {
       transform: scale(1.05);
-      box-shadow: 0 8px 28px rgba(107, 45, 58, 0.45);
+      box-shadow: 0 8px 28px rgba(244, 162, 97, 0.5);
     }
 
     .btn-no {
-      background: transparent;
+      background: var(--snow);
       color: var(--ink-soft);
-      border: 2px solid var(--gold-soft);
+      border: 2px solid var(--ice-deep);
     }
 
     .btn-no:hover {
-      transform: scale(0.95);
-      border-color: var(--gold);
+      transform: scale(0.98);
+      border-color: var(--beak);
       color: var(--ink);
-    }
-
-    /* No button run away */
-    .btn-no.runaway {
-      position: fixed;
-      transition: left 0.3s ease, top 0.3s ease;
     }
 
     /* Yes response */
@@ -212,29 +345,29 @@
     }
 
     .response .hearts {
-      font-size: 4rem;
+      font-size: 3.5rem;
       margin-bottom: 1rem;
       animation: float 2s ease-in-out infinite;
     }
 
     .response h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 6vw, 3rem);
-      color: var(--rose-deep);
-      margin-bottom: 1rem;
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      color: var(--ink);
+      margin-bottom: 0.75rem;
     }
 
     .response p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--ink-soft);
-      max-width: 360px;
+      max-width: 340px;
       margin: 0 auto;
       line-height: 1.7;
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-8px); }
     }
 
     /* Confetti */
@@ -265,7 +398,6 @@
       }
     }
 
-    /* Hide sections until active */
     .page.hidden {
       display: none;
     }
@@ -275,25 +407,78 @@
   <main>
     <section class="page" id="intro">
       <div class="hero">
+        <div class="penguin">
+          <div class="penguin-body"></div>
+          <div class="penguin-belly"></div>
+          <div class="penguin-head"></div>
+          <div class="penguin-eye left"></div>
+          <div class="penguin-eye right"></div>
+          <div class="penguin-beak"></div>
+          <div class="penguin-blush left"></div>
+          <div class="penguin-blush right"></div>
+        </div>
         <p class="greeting">Hey you</p>
         <h1 class="name">There's something I wanted to ask you</h1>
-        <p class="line">Scroll when you're ready — and take your time.</p>
+        <p class="line">Scroll when you're ready — take your time.</p>
         <p class="scroll-hint">↓</p>
+      </div>
+    </section>
+
+    <section class="page" id="photos">
+      <div class="photos-section">
+        <h2>Us 🐧</h2>
+        <div class="photos-grid">
+          <div class="photo-wrap featured">
+            <img src="images/us1.jpg" alt="Us" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="placeholder">Add images/us1.jpg</span>
+          </div>
+          <div class="photo-wrap">
+            <img src="images/us2.jpg" alt="Us" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="placeholder">us2.jpg</span>
+          </div>
+          <div class="photo-wrap">
+            <img src="images/us3.jpg" alt="Us" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="placeholder">us3.jpg</span>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="page" id="letter">
       <div class="letter">
         <p>Every day with you feels a little more like coming home.</p>
-        <p class="italic">So this year, I didn't want to just hope — I wanted to ask properly.</p>
+        <p class="italic">So this year, I wanted to ask properly.</p>
       </div>
     </section>
 
     <section class="page" id="ask">
       <div class="ask">
+        <div class="penguins">
+          <div class="penguin penguin-small">
+            <div class="penguin-body"></div>
+            <div class="penguin-belly"></div>
+            <div class="penguin-head"></div>
+            <div class="penguin-eye left"></div>
+            <div class="penguin-eye right"></div>
+            <div class="penguin-beak"></div>
+            <div class="penguin-blush left"></div>
+            <div class="penguin-blush right"></div>
+          </div>
+          <span style="font-size: 2rem;">♥</span>
+          <div class="penguin penguin-small">
+            <div class="penguin-body"></div>
+            <div class="penguin-belly"></div>
+            <div class="penguin-head"></div>
+            <div class="penguin-eye left"></div>
+            <div class="penguin-eye right"></div>
+            <div class="penguin-beak"></div>
+            <div class="penguin-blush left"></div>
+            <div class="penguin-blush right"></div>
+          </div>
+        </div>
         <h2>Will you be my Valentine?</h2>
         <div class="buttons">
-          <button type="button" class="btn btn-yes" id="btnYes">Yes</button>
+          <button type="button" class="btn btn-yes" id="btnYes">Yes!</button>
           <button type="button" class="btn btn-no" id="btnNo">Maybe later?</button>
         </div>
       </div>
@@ -302,7 +487,7 @@
     <section class="page hidden" id="yes-response">
       <div class="confetti" id="confetti"></div>
       <div class="response show">
-        <div class="hearts">♥ ♥ ♥</div>
+        <div class="hearts">🐧 ♥ 🐧</div>
         <h2>I'm so glad.</h2>
         <p>Can't wait to celebrate with you. You mean the world to me.</p>
       </div>
@@ -316,7 +501,7 @@
     const yesPage = document.getElementById('yes-response');
     const confettiEl = document.getElementById('confetti');
 
-    const colors = ['#8b4352', '#6b2d3a', '#c9a962', '#e8dcc8'];
+    const colors = ['#f4a261', '#e07a5f', '#b8dce8', '#2d2d2d', '#ffb5b5'];
 
     function createConfetti() {
       for (let i = 0; i < 60; i++) {
@@ -344,13 +529,13 @@
       if (noClicks === 1) {
         btnNo.textContent = 'Sure?';
       } else if (noClicks === 2) {
-        btnNo.textContent = 'Pretty please?';
+        btnNo.textContent = 'Pretty please? 🐧';
       } else {
-        btnNo.textContent = "Okay fine — it's Yes";
+        btnNo.textContent = "Okay fine — Yes!";
         btnNo.classList.remove('btn-no');
         btnNo.classList.add('btn-yes');
-        btnNo.style.background = 'linear-gradient(135deg, #8b4352 0%, #6b2d3a 100%)';
-        btnNo.style.color = '#faf8f5';
+        btnNo.style.background = 'linear-gradient(135deg, #f4a261 0%, #e07a5f 100%)';
+        btnNo.style.color = '#fafcfe';
         btnNo.style.border = 'none';
         btnNo.onclick = () => btnYes.click();
       }
